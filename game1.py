@@ -2,18 +2,20 @@ from tkinter import *
 import random
 import time
 
-class Menu:#Это оно самое 
-    
-    
+"""class Menu:#Это оно самое
+
+
     def __init__(self, tk, win, label1):
-        def game_start(self, tk):
-            win = Toplevel(tk)
-            label1 = Label(win, text="Start")
-            label1.pack()
+        pass
 
-        def exit_app(self, tk):
-            tk.destroy()
+    def game_start(self, tk):
+        self.win = Toplevel(tk)
+        self.label1 = Label(win, text="Start")
+        self.label1.pack()
 
+    def exit_app(self, tk):
+        tk.destroy()"""
+x = 0
 
 class Ball:
     def __init__(self, canvas, paddle, color):
@@ -42,6 +44,7 @@ class Ball:
         if pos[3] >= self.cavas_height:
             self.hit_button = True
         if self.hit_paddle(pos) == True:
+            self.x+= 1
             self.y = -3
         if pos[0] <= 0:
             self.x = 3
@@ -75,22 +78,22 @@ tk.wm_attributes("-topmost", 1)
 canvas = Canvas(tk, width=500, height=400, bd=0, highlightthickness=0)
 canvas.pack()
 tk.update()
-main_menu = Menu(tk)#
+"""main_menu = Menu(tk)#
 tk.configure(menu=main_menu)
 first_item = Menu(main_menu)
 main_menu.add_cascade(label="file", menu=first_item)
 first_item.add_command(label="New_Game", command=game_start)
 first_item.add_command(label="Exit", command=exit_app)
-tk.mainloop()
+tk.mainloop()#"""
 paddle = Paddle(canvas, "pink")
 ball = Ball(canvas, paddle, "violet")
-
 while 1:
     if ball.hit_button == False:
         ball.draw()
         paddle.draw()
+        canvas.create_text(460, 1, text="Your points", x, fill="black", font=8)
     elif ball.hit_button == True:
-        canvas.create_text(250, 200, text="You lose. This is end. Press <X> to close program.", fill="red", font=12)
+        canvas.create_text(250, 200, text="You lose. This is end. Press <X> to close program.",  fill="red", font=12)
     tk.update_idletasks()
     tk.update()
     time.sleep(0.02)
