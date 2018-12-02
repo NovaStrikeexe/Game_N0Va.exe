@@ -2,15 +2,18 @@ from tkinter import *
 import random
 import time
 
+class Menu:#Это оно самое 
+    
+    
+    def __init__(self, tk, win, label1):
+        def game_start(self, tk):
+            win = Toplevel(tk)
+            label1 = Label(win, text="Start")
+            label1.pack()
 
-def new_win():
-    win = Toplevel(tk, backgrownd="pink")
-    label1 = Label(win, text="Start")
-    label1.pack()
+        def exit_app(self, tk):
+            tk.destroy()
 
-
-def exit_app():
-    tk.destroy()
 
 class Ball:
     def __init__(self, canvas, paddle, color):
@@ -76,9 +79,9 @@ main_menu = Menu(tk)#
 tk.configure(menu=main_menu)
 first_item = Menu(main_menu)
 main_menu.add_cascade(label="file", menu=first_item)
-first_item.add_command(label="New_Game", command=new_win)
-first_item.add_command(label="Exit",command=exit_app)
-tk.mainloop()#
+first_item.add_command(label="New_Game", command=game_start)
+first_item.add_command(label="Exit", command=exit_app)
+tk.mainloop()
 paddle = Paddle(canvas, "pink")
 ball = Ball(canvas, paddle, "violet")
 
@@ -87,7 +90,7 @@ while 1:
         ball.draw()
         paddle.draw()
     elif ball.hit_button == True:
-        canvas.create_text(250, 200, text="You lose. This is end. Press <X> to close program.", fill="red")
+        canvas.create_text(250, 200, text="You lose. This is end. Press <X> to close program.", fill="red", font=12)
     tk.update_idletasks()
     tk.update()
     time.sleep(0.02)
